@@ -95,5 +95,26 @@
                 </div>--}}
             </div>
         </div>
+        <script src="/js/echo.js"></script>
+        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+        <?php $id = 1;?>
+        <script>
+            var i = 0;
+            Pusher.logToConsole = true;
+
+            window.Echo = new Echo({
+                broadcaster: 'pusher',
+                key: '6204921d95f764016ce1',
+                cluster: 'ap2',
+                encrypted: true,
+                logToConsole: true,
+            });
+
+            Echo.channel('user')
+                .listen('ChatEvent', (e) => {
+                    console.log(e);
+                });
+
+        </script>
     </body>
 </html>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function getFriends()
+    {
+        return UserResource::collection(User::where('id', '!=', auth()->id())->get());
     }
 }
